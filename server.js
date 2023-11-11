@@ -4,11 +4,13 @@ const colors = require('colors')
 const conectarDB = require('./config/db')
 //dependencias de rutas
 const bootcampRoutes = require('./routes/bootcampRoutes')
+const CoursesRoutes = require('./routes/coursesRoutes')
+const reviewsRoutes = require('./routes/reviewsRoutes')
 
 //VINCULAR ARCHIVO env
 dotenv.config(
 { path : './config/.env' }
-)
+) 
 
 //CONECTAR A BASE DE DATOS
 
@@ -20,8 +22,11 @@ app.use(express.json())
 //conectar las rutas
 //al objeto
 app.use('/api/v1/devcamp/bootcamps',
-    bootcampRoutes)
-
+    bootcampRoutes) 
+app.use('/api/v1/devcamp/courses',
+CoursesRoutes) 
+app.use('/api/v1/devcamp/views',
+reviewsRoutes) 
 //RUTAS DE PRUEBAS
 app.get('/prueba/:id', (req,  res) =>{
     res.send(`Hola, ${req.params.id}`)
